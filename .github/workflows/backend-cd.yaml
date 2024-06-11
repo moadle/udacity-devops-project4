@@ -23,19 +23,6 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Cache pipenv dependencies
-        id: cache-pip
-        uses: actions/cache@v3
-        env:
-          cache-name: cache-pip-dependencies
-        with:
-          path: ~/.cache/pipenv
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/Pipfile.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-build-${{ env.cache-name }}-
-            ${{ runner.os }}-build-
-            ${{ runner.os }}-
-
       - name: Install pipenv
         run: |
           pip install pipenv
